@@ -14,12 +14,33 @@ English | [中文](README.zh.md)
 
 ## Install
 
-Needs Node 22.19+ (or 24+) and the DSH CLI.
+Needs Node 22.19+ (or 24+) and the DSH CLI. This plugin follows the `0.2.0` DSH line
+(`^0.2.0-rc.2`).
+
+For the Web profile:
 
 ```sh
 dsh plugin --profile web add @lengmoxxl/dsh-git
 dsh --profile web
 ```
+
+For DSH Desktop: the desktop profile is managed by the Electron app, which does not run a
+package manager on demand, so install it the way a manually linked layer is composed — add
+a `link:` dependency plus a `dsh.profile.bundles` entry to
+`~/.dsh/profiles/desktop/package.json`, and symlink the package into the profile's
+`node_modules/@lengmoxxl/`, then restart the app.
+
+```jsonc
+// ~/.dsh/profiles/desktop/package.json
+"dependencies": { "@lengmoxxl/dsh-git": "link:/path/to/dsh-git" },
+"dsh": { "profile": { "bundles": [ /* …, */ "@lengmoxxl/dsh-git" ] } }
+```
+
+```sh
+ln -s /path/to/dsh-git ~/.dsh/profiles/desktop/node_modules/@lengmoxxl/dsh-git
+```
+
+Restart the app afterwards: the Git page is reached from the right Sidebar's add control.
 
 ## Requirements, permissions, and limits
 

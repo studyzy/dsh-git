@@ -12,12 +12,28 @@
 
 ## 安装
 
-需要 Node 22.19+（或 24+）与 DSH CLI。
+需要 Node 22.19+（或 24+）与 DSH CLI。本插件跟随 `0.2.0` 这条 DSH 线（`^0.2.0-rc.2`）。
+
+Web 端：
 
 ```sh
 dsh plugin --profile web add @lengmoxxl/dsh-git
 dsh --profile web
 ```
+
+DSH Desktop：桌面版 profile 由 Electron 应用自己管理，不会按需跑包管理器，所以按「手动 link 一层」的方式装：在 `~/.dsh/profiles/desktop/package.json` 里加一条 `link:` 依赖和一条 `dsh.profile.bundles` 条目，再把该包软链到 profile 的 `node_modules/@lengmoxxl/` 下，然后重启应用。
+
+```jsonc
+// ~/.dsh/profiles/desktop/package.json
+"dependencies": { "@lengmoxxl/dsh-git": "link:/path/to/dsh-git" },
+"dsh": { "profile": { "bundles": [ /* …, */ "@lengmoxxl/dsh-git" ] } }
+```
+
+```sh
+ln -s /path/to/dsh-git ~/.dsh/profiles/desktop/node_modules/@lengmoxxl/dsh-git
+```
+
+装好后重启应用即可：Git 页面从右侧栏的 `+` 添加控件里进入。
 
 ## 依赖、权限与限制
 

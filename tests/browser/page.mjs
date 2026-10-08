@@ -110,9 +110,9 @@ const page = `<!doctype html>
         Tag: (p) => React.createElement('span', p, p.children),
         FileTypeIcon: () => React.createElement('span', null, null),
         // Sized, or an svg with no size of its own is 300 by 150 and covers the rows.
-        IconBranchOutline16: () => React.createElement('svg', { width: 16, height: 16 }),
-        IconChevronDownOutline14: () => React.createElement('svg', { width: 14, height: 14 }),
-        IconChevronRightOutline14: () => React.createElement('svg', { width: 14, height: 14 }),
+        IconBranchOutlineRegular: () => React.createElement('svg', { width: 16, height: 16 }),
+        IconChevronDownOutlineRegular: () => React.createElement('svg', { width: 14, height: 14 }),
+        IconChevronRightOutlineRegular: () => React.createElement('svg', { width: 14, height: 14 }),
         // The shell's own reading of a timestamp, which a commit row's age is built from.
         relativeTime: (at, now) => ({ unit: 'minutes', n: Math.max(1, Math.floor((now - at * 1000) / 60_000)) }),
       }
